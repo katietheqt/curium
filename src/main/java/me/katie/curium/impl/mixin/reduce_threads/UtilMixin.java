@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.Overwrite;
 import java.util.concurrent.ExecutorService;
 
 @Mixin(Util.class)
-@SuppressWarnings("overwrite")
+@SuppressWarnings({"overwrite", "OverwriteAuthorRequired"})
 public class UtilMixin {
     @Overwrite
     private static ExecutorService makeExecutor(String name) {

@@ -16,7 +16,7 @@ import java.util.List;
 
 @Mixin(SoundEngine.class)
 @StubClass
-@SuppressWarnings("overwrite")
+@SuppressWarnings({"overwrite", "OverwriteAuthorRequired"})
 public class SoundEngineMixin {
     @OverwriteCtor
     public void curium_overwriteCtor(SoundManager soundManager, Options options, ResourceProvider resourceProvider) {

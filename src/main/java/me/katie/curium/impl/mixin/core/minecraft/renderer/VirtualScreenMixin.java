@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.*;
 
 @Mixin(VirtualScreen.class)
 @StubClass
-@SuppressWarnings("overwrite")
+@SuppressWarnings({"overwrite", "OverwriteAuthorRequired"})
 public class VirtualScreenMixin {
     @Mutable
     @Shadow @Final private Minecraft minecraft;

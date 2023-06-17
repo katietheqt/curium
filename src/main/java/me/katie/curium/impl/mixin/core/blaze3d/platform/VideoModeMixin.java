@@ -5,7 +5,7 @@ import me.katie.curium.impl.asm.annotations.Erase;
 import me.katie.curium.impl.asm.annotations.StubClass;
 import org.spongepowered.asm.mixin.Mixin;
 
-@Mixin(value = VideoMode.class, remap = false)
+@Mixin(VideoMode.class)
 @StubClass(isThrowing = true)
 @Erase(methods = {
         "<init>(Lorg/lwjgl/glfw/GLFWVidMode$Buffer;)V",

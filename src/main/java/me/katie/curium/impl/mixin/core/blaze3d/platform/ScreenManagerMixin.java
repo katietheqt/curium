@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.*;
 
 @Mixin(ScreenManager.class)
 @StubClass
-@SuppressWarnings("overwrite")
+@SuppressWarnings({"overwrite", "OverwriteAuthorRequired"})
 public class ScreenManagerMixin {
     @OverwriteCtor
     private void curium_overwriteCtor(MonitorCreator monitorCreator) {

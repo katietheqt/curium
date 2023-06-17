@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(GameRenderer.class)
-@SuppressWarnings("overwrite")
+@SuppressWarnings({"overwrite", "OverwriteAuthorRequired"})
 public class GameRendererMixin {
     @Shadow @Final
     Minecraft minecraft;

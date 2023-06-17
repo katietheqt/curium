@@ -5,8 +5,8 @@ import net.minecraft.network.chat.Component;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
-@Mixin(value = InputConstants.Type.class, remap = false)
-@SuppressWarnings("overwrite")
+@Mixin(InputConstants.Type.class)
+@SuppressWarnings({"overwrite", "OverwriteAuthorRequired"})
 public class InputConstants_TypeMixin {
     @Overwrite
     @SuppressWarnings("target")

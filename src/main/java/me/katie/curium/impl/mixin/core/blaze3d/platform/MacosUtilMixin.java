@@ -8,9 +8,9 @@ import org.spongepowered.asm.mixin.Overwrite;
 
 import java.io.InputStream;
 
-@Mixin(value = MacosUtil.class, remap = false)
+@Mixin(MacosUtil.class)
 @StubClass(isThrowing = true)
-@SuppressWarnings("overwrite")
+@SuppressWarnings({"overwrite", "OverwriteAuthorRequired"})
 public class MacosUtilMixin {
     @Overwrite
     public static void toggleFullscreen(long l) {

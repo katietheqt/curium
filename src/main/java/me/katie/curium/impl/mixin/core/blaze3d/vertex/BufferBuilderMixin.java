@@ -14,8 +14,8 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.nio.ByteBuffer;
 
-@Mixin(value = BufferBuilder.class, remap = false)
-@SuppressWarnings("overwrite")
+@Mixin(BufferBuilder.class)
+@SuppressWarnings({"overwrite", "OverwriteAuthorRequired"})
 public class BufferBuilderMixin {
     @Shadow
     private ByteBuffer buffer;

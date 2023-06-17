@@ -61,8 +61,7 @@ public abstract class MinecraftMixin implements CuriumStateHolder {
                     ),
                     to = @At(
                             value = "INVOKE",
-                            target = "Lcom/mojang/blaze3d/systems/RenderSystem;initBackendSystem()Lnet/minecraft/util/TimeSource$NanoTimeSource;",
-                            remap = false
+                            target = "Lcom/mojang/blaze3d/systems/RenderSystem;initBackendSystem()Lnet/minecraft/util/TimeSource$NanoTimeSource;"
                     )
             ),
             at = @At(

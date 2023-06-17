@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
 @Mixin(RealmsTextureManager.TextureData.class)
-@SuppressWarnings("overwrite")
+@SuppressWarnings({"overwrite", "OverwriteAuthorRequired"})
 public class RealmsTextureManager_TextureDataMixin {
     @Overwrite
     @SuppressWarnings("target")

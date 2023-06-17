@@ -6,8 +6,8 @@ import org.spongepowered.asm.mixin.Overwrite;
 
 import java.lang.invoke.MethodHandle;
 
-@Mixin(value = DebugMemoryUntracker.class, remap = false)
-@SuppressWarnings("overwrite")
+@Mixin(DebugMemoryUntracker.class)
+@SuppressWarnings({"overwrite", "OverwriteAuthorRequired"})
 public class DebugMemoryUntrackerMixin {
     @Overwrite
     @SuppressWarnings("target")

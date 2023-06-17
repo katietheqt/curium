@@ -7,8 +7,8 @@ import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.OptionalInt;
 
-@Mixin(value = SoundBuffer.class, remap = false)
-@SuppressWarnings("overwrite")
+@Mixin(SoundBuffer.class)
+@SuppressWarnings({"overwrite", "OverwriteAuthorRequired"})
 public class SoundBufferMixin {
     @Shadow private boolean hasAlBuffer;
 

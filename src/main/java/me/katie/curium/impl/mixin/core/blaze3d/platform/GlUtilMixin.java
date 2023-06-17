@@ -8,8 +8,8 @@ import org.spongepowered.asm.mixin.Overwrite;
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
 
-@Mixin(value = GlUtil.class, remap = false)
-@SuppressWarnings("overwrite")
+@Mixin(GlUtil.class)
+@SuppressWarnings({"overwrite", "OverwriteAuthorRequired"})
 public class GlUtilMixin {
     @Overwrite
     public static ByteBuffer allocateMemory(int i) {

@@ -16,9 +16,9 @@ import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 
-@Mixin(value = Window.class, remap = false)
+@Mixin(Window.class)
 @StubClass
-@SuppressWarnings("overwrite")
+@SuppressWarnings({"overwrite", "OverwriteAuthorRequired"})
 public class WindowMixin {
     @OverwriteCtor
     private void curium_overwriteCtor(WindowEventHandler windowEventHandler, ScreenManager screenManager, DisplayData displayData, @Nullable String string, String string2) {

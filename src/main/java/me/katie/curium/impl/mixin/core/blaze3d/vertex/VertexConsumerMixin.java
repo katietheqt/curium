@@ -6,8 +6,8 @@ import net.minecraft.client.renderer.block.model.BakedQuad;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
-@Mixin(value = VertexConsumer.class, remap = false)
-@SuppressWarnings("overwrite")
+@Mixin(VertexConsumer.class)
+@SuppressWarnings({"overwrite", "OverwriteAuthorRequired"})
 public interface VertexConsumerMixin {
     @Overwrite
     default void putBulkData(PoseStack.Pose pose, BakedQuad bakedQuad, float[] fs, float f, float g, float h, int[] is, int i, boolean bl) {
