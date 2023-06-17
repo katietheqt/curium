@@ -1,23 +1,19 @@
 package me.katie.curium.impl.mixin.core.minecraft.renderer.texture;
 
 import net.minecraft.client.renderer.texture.TextureAtlas;
-import org.slf4j.Logger;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.resources.ResourceManager;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.Overwrite;
+
+import java.util.Queue;
 
 @Mixin(TextureAtlas.class)
+@SuppressWarnings({"overwrite", "OverwriteAuthorRequired"})
 public class TextureAtlasMixin {
-    @Redirect(
-            method = "upload",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lorg/slf4j/Logger;info(Ljava/lang/String;[Ljava/lang/Object;)V",
-                    remap = false,
-                    ordinal = 0
-            )
-    )
-    private void curium_removeUselessLogMessage(Logger instance, String message, Object[] objects) {
+    @Overwrite
+    private void method_18160(ResourceLocation location, ResourceManager manager, Queue<TextureAtlasSprite.Info> queue) {
 
     }
 }

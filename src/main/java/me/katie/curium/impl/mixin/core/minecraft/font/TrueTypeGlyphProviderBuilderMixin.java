@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
 @Mixin(TrueTypeGlyphProviderBuilder.class)
-@SuppressWarnings("overwrite")
+@SuppressWarnings({"overwrite", "OverwriteAuthorRequired"})
 public class TrueTypeGlyphProviderBuilderMixin {
     @Overwrite
     public @Nullable GlyphProvider create(ResourceManager resourceManager) {

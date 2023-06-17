@@ -7,8 +7,8 @@ import org.spongepowered.asm.mixin.Overwrite;
 import java.util.Collections;
 import java.util.List;
 
-@Mixin(value = GlDebug.class, remap = false)
-@SuppressWarnings("overwrite")
+@Mixin(GlDebug.class)
+@SuppressWarnings({"overwrite", "OverwriteAuthorRequired"})
 public class GlDebugMixin {
     @Overwrite
     private static void printDebugLog(int i, int j, int k, int l, int m, long n, long o) {

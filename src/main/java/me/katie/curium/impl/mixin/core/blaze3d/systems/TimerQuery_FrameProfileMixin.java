@@ -4,7 +4,7 @@ import com.mojang.blaze3d.systems.TimerQuery;
 import me.katie.curium.impl.asm.annotations.StubClass;
 import org.spongepowered.asm.mixin.Mixin;
 
-@Mixin(value = TimerQuery.FrameProfile.class, remap = false)
+@Mixin(TimerQuery.FrameProfile.class)
 @StubClass(isThrowing = true)
 public class TimerQuery_FrameProfileMixin {
 }

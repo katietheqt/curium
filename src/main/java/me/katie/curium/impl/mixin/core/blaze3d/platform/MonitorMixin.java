@@ -6,8 +6,8 @@ import org.spongepowered.asm.mixin.*;
 
 import java.util.List;
 
-@Mixin(value = Monitor.class, remap = false)
-@SuppressWarnings("overwrite")
+@Mixin(Monitor.class)
+@SuppressWarnings({"overwrite", "OverwriteAuthorRequired"})
 public class MonitorMixin {
     @Mutable
     @Shadow @Final private List<VideoMode> videoModes;

@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.Overwrite;
  * licensed under MIT.
  */
 @Mixin(SharedConstants.class)
-@SuppressWarnings("overwrite")
+@SuppressWarnings({"overwrite", "OverwriteAuthorRequired"})
 public class SharedConstantsMixin {
     @Overwrite
     public static void enableDataFixerOptimizations() {

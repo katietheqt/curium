@@ -1,29 +1,18 @@
 package me.katie.curium.impl.mixin.core.blaze3d.platform;
 
 import com.mojang.blaze3d.platform.MemoryTracker;
-import org.lwjgl.system.MemoryUtil;
+import me.katie.curium.impl.asm.annotations.Erase;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.nio.ByteBuffer;
 
-@Mixin(value = MemoryTracker.class, remap = false)
-@SuppressWarnings("overwrite")
+@Mixin(MemoryTracker.class)
+@Erase(
+        methods = "<clinit>"
+)
+@SuppressWarnings({"overwrite", "OverwriteAuthorRequired"})
 public class MemoryTrackerMixin {
-    @Redirect(
-            method = "<clinit>",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lorg/lwjgl/system/MemoryUtil;getAllocator(Z)Lorg/lwjgl/system/MemoryUtil$MemoryAllocator;",
-                    remap = false
-            )
-    )
-    private static MemoryUtil.MemoryAllocator curium_noAllocate(boolean tracked) {
-        return null;
-    }
-
     @Overwrite
     public static ByteBuffer create(int size) {
         return ByteBuffer.allocate(size);

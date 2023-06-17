@@ -4,7 +4,7 @@ import com.mojang.blaze3d.pipeline.MainTarget;
 import me.katie.curium.impl.asm.annotations.StubClass;
 import org.spongepowered.asm.mixin.Mixin;
 
-@Mixin(value = MainTarget.class, remap = false)
+@Mixin(MainTarget.class)
 @StubClass
 public class MainTargetMixin {
 

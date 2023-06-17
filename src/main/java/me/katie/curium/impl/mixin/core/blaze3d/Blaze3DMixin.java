@@ -6,8 +6,8 @@ import net.minecraft.Util;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
-@Mixin(value = Blaze3D.class, remap = false)
-@SuppressWarnings("overwrite")
+@Mixin(Blaze3D.class)
+@SuppressWarnings({"overwrite", "OverwriteAuthorRequired"})
 public class Blaze3DMixin {
     @Overwrite
     public static void youJustLostTheGame() {

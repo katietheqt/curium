@@ -7,7 +7,7 @@ import net.minecraft.client.Options;
 import net.minecraft.client.resources.sounds.SoundInstance;
 import net.minecraft.client.sounds.SoundEngine;
 import net.minecraft.client.sounds.SoundManager;
-import net.minecraft.server.packs.resources.ResourceProvider;
+import net.minecraft.server.packs.resources.ResourceManager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
@@ -16,10 +16,10 @@ import java.util.List;
 
 @Mixin(SoundEngine.class)
 @StubClass
-@SuppressWarnings("overwrite")
+@SuppressWarnings({"overwrite", "OverwriteAuthorRequired"})
 public class SoundEngineMixin {
     @OverwriteCtor
-    public void curium_overwriteCtor(SoundManager soundManager, Options options, ResourceProvider resourceProvider) {
+    public void curium_overwriteCtor(SoundManager soundManager, Options options, ResourceManager resourceManager) {
 
     }
 

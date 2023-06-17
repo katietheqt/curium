@@ -10,7 +10,7 @@ import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 
 @Mixin(value = TextureUtil.class, remap = false)
-@SuppressWarnings("overwrite")
+@SuppressWarnings({"overwrite", "OverwriteAuthorRequired"})
 public class TextureUtilMixin {
     @Overwrite
     public static ByteBuffer readResource(InputStream inputStream) {

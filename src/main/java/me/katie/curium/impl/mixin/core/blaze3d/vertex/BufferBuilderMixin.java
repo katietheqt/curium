@@ -2,9 +2,9 @@ package me.katie.curium.impl.mixin.core.blaze3d.vertex;
 
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import com.mojang.blaze3d.vertex.VertexFormat;
+import com.mojang.math.Vector3f;
 import it.unimi.dsi.fastutil.ints.IntConsumer;
 import me.katie.curium.impl.asm.annotations.OverwriteCtor;
-import org.joml.Vector3f;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -14,8 +14,8 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.nio.ByteBuffer;
 
-@Mixin(value = BufferBuilder.class, remap = false)
-@SuppressWarnings("overwrite")
+@Mixin(BufferBuilder.class)
+@SuppressWarnings({"overwrite", "OverwriteAuthorRequired"})
 public class BufferBuilderMixin {
     @Shadow
     private ByteBuffer buffer;

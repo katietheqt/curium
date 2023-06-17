@@ -11,7 +11,8 @@ public class MainMixin {
             method = "run",
             at = @At(
                     value = "INVOKE",
-                    target = "Ljava/lang/Thread;setName(Ljava/lang/String;)V"
+                    target = "Ljava/lang/Thread;setName(Ljava/lang/String;)V",
+                    remap = false
             )
     )
     private static void curium_overwriteThreadName(Thread instance, String name) {

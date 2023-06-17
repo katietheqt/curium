@@ -5,8 +5,8 @@ import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
-@Mixin(value = TimerQuery.TimerQueryLazyLoader.class, remap = false)
-@SuppressWarnings("overwrite")
+@Mixin(TimerQuery.TimerQueryLazyLoader.class)
+@SuppressWarnings({"overwrite", "OverwriteAuthorRequired"})
 public class TimerQuery_TimerQueryLazyLoaderMixin {
     @Overwrite
     private static @Nullable TimerQuery instantiate() {

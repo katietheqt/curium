@@ -13,9 +13,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.OptionalLong;
 
-@Mixin(value = Library.class, remap = false)
+@Mixin(Library.class)
 @StubClass
-@SuppressWarnings("overwrite")
+@SuppressWarnings({"overwrite", "OverwriteAuthorRequired"})
 public class LibraryMixin {
     @Overwrite
     private int getChannelCount() {

@@ -5,7 +5,7 @@ import me.katie.curium.impl.asm.annotations.Erase;
 import me.katie.curium.impl.asm.annotations.StubClass;
 import org.spongepowered.asm.mixin.Mixin;
 
-@Mixin(value = TrueTypeGlyphProvider.class, remap = false)
+@Mixin(TrueTypeGlyphProvider.class)
 @StubClass(isThrowing = true)
 @Erase(
         methods = {

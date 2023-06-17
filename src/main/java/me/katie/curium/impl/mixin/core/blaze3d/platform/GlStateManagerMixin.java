@@ -10,7 +10,7 @@ import java.nio.ByteBuffer;
 
 @Mixin(value = GlStateManager.class, remap = false)
 @StubClass
-@SuppressWarnings("overwrite")
+@SuppressWarnings({"overwrite", "OverwriteAuthorRequired"})
 public class GlStateManagerMixin {
     @Overwrite
     public static int glGetProgrami(int i, int j) {

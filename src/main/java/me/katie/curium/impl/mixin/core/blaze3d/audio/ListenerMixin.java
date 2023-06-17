@@ -5,13 +5,14 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(value = Listener.class, remap = false)
+@Mixin(Listener.class)
 public class ListenerMixin {
     @Redirect(
             method = "setListenerPosition",
             at = @At(
                     value = "INVOKE",
-                    target = "Lorg/lwjgl/openal/AL10;alListener3f(IFFF)V"
+                    target = "Lorg/lwjgl/openal/AL10;alListener3f(IFFF)V",
+                    remap = false
             )
     )
     private void curium_nopSetListenerPosition(int paramName, float value1, float value2, float value3) {
@@ -22,7 +23,8 @@ public class ListenerMixin {
             method = "setListenerOrientation",
             at = @At(
                     value = "INVOKE",
-                    target = "Lorg/lwjgl/openal/AL10;alListenerfv(I[F)V"
+                    target = "Lorg/lwjgl/openal/AL10;alListenerfv(I[F)V",
+                    remap = false
             )
     )
     private void curium_nopSetListenerOrientation(int paramName, float[] values) {
@@ -33,7 +35,8 @@ public class ListenerMixin {
             method = "setGain",
             at = @At(
                     value = "INVOKE",
-                    target = "Lorg/lwjgl/openal/AL10;alListenerf(IF)V"
+                    target = "Lorg/lwjgl/openal/AL10;alListenerf(IF)V",
+                    remap = false
             )
     )
     private void curium_nopSetGain(int paramName, float value) {

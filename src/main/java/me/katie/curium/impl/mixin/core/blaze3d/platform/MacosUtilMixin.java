@@ -2,15 +2,14 @@ package me.katie.curium.impl.mixin.core.blaze3d.platform;
 
 import com.mojang.blaze3d.platform.MacosUtil;
 import me.katie.curium.impl.asm.annotations.StubClass;
-import net.minecraft.server.packs.resources.IoSupplier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
 import java.io.InputStream;
 
-@Mixin(value = MacosUtil.class, remap = false)
+@Mixin(MacosUtil.class)
 @StubClass(isThrowing = true)
-@SuppressWarnings("overwrite")
+@SuppressWarnings({"overwrite", "OverwriteAuthorRequired"})
 public class MacosUtilMixin {
     @Overwrite
     public static void toggleFullscreen(long l) {
@@ -18,7 +17,7 @@ public class MacosUtilMixin {
     }
 
     @Overwrite
-    public static void loadIcon(IoSupplier<InputStream> ioSupplier) {
+    public static void loadIcon(InputStream inputStream) {
 
     }
 }

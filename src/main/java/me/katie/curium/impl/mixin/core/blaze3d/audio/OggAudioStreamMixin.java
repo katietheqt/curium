@@ -4,7 +4,7 @@ import com.mojang.blaze3d.audio.OggAudioStream;
 import me.katie.curium.impl.asm.annotations.StubClass;
 import org.spongepowered.asm.mixin.Mixin;
 
-@Mixin(value = OggAudioStream.class, remap = false)
+@Mixin(OggAudioStream.class)
 @StubClass(
         isThrowing = true,
         skip = "<init>"

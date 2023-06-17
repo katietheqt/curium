@@ -53,6 +53,7 @@ public abstract class MinecraftMixin implements CuriumStateHolder {
 
     @Redirect(
             method = "<init>",
+            require = 0,
             slice = @Slice(
                     from = @At(
                             value = "FIELD",

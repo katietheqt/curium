@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 @Mixin(value = RenderSystem.class, remap = false)
-@SuppressWarnings("overwrite")
+@SuppressWarnings({"overwrite", "OverwriteAuthorRequired"})
 public class RenderSystemMixin {
     @Shadow
     @Final

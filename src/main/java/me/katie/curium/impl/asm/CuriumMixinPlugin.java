@@ -25,7 +25,6 @@ public final class CuriumMixinPlugin implements IMixinConfigPlugin {
         l.add(new StubClassHandler());
         l.add(new OverwriteCtorHandler());
         l.add(new CustomTransformerHandler());
-        l.add(new OverwriteClassHandler());
     });
 
     @Override

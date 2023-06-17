@@ -17,7 +17,7 @@ import java.util.function.LongSupplier;
 
 @Mixin(value = GLX.class, remap = false)
 @StubClass
-@SuppressWarnings("overwrite")
+@SuppressWarnings({"overwrite", "OverwriteAuthorRequired"})
 public class GLXMixin {
     @Shadow private static String cpuInfo;
 

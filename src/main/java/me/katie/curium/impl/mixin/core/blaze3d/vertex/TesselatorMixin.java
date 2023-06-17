@@ -6,9 +6,9 @@ import me.katie.curium.impl.asm.annotations.OverwriteCtor;
 import me.katie.curium.impl.asm.annotations.StubClass;
 import org.spongepowered.asm.mixin.*;
 
-@Mixin(value = Tesselator.class, remap = false)
+@Mixin(Tesselator.class)
 @StubClass(skip = "<clinit>")
-@SuppressWarnings("overwrite")
+@SuppressWarnings({"overwrite", "OverwriteAuthorRequired"})
 public class TesselatorMixin {
     @Mutable
     @Shadow @Final private BufferBuilder builder;
