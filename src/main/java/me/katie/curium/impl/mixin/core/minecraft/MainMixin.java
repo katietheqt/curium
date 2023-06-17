@@ -8,10 +8,12 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(Main.class)
 public class MainMixin {
     @Redirect(
-            method = "run",
+            method = "main",
+            remap = false,
             at = @At(
                     value = "INVOKE",
-                    target = "Ljava/lang/Thread;setName(Ljava/lang/String;)V"
+                    target = "Ljava/lang/Thread;setName(Ljava/lang/String;)V",
+                    remap = false
             )
     )
     private static void curium_overwriteThreadName(Thread instance, String name) {

@@ -55,8 +55,6 @@
     "core.minecraft.renderer.texture.SpriteLoaderMixin",
     "core.minecraft.renderer.texture.TextureAtlasMixin",
     "core.minecraft.screen.ReceivingLevelScreenMixin",
-    "core.minecraft.screen.WorldGenSettingsComponentMixin",
-    "core.realms.RealmsTextureManager_TextureDataMixin",
     "performance.GameRendererMixin",
     "performance.MinecraftMixin",
     "reduce_threads.ConnectionMixin",

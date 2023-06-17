@@ -2,7 +2,6 @@ package me.katie.curium.impl.mixin.performance;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.components.toasts.ToastComponent;
 import net.minecraft.client.main.GameConfig;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.GameRenderer;
@@ -21,17 +20,6 @@ public class MinecraftMixin {
     )
     private void curium_onInit(GameConfig gameConfig, CallbackInfo ci) {
         System.gc();
-    }
-
-    @Redirect(
-            method = "runTick",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/client/gui/components/toasts/ToastComponent;render(Lcom/mojang/blaze3d/vertex/PoseStack;)V"
-            )
-    )
-    private void curium_neverRenderToasts(ToastComponent instance, PoseStack poseStack) {
-
     }
 
     @Redirect(

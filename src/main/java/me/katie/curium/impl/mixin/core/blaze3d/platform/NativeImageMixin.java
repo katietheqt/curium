@@ -1,16 +1,19 @@
 package me.katie.curium.impl.mixin.core.blaze3d.platform;
 
 import com.mojang.blaze3d.platform.NativeImage;
+import me.katie.curium.impl.asm.annotations.Erase;
 import me.katie.curium.impl.asm.annotations.OverwriteCtor;
 import me.katie.curium.impl.asm.annotations.StubClass;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.*;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
+import java.util.function.IntUnaryOperator;
 
 @Mixin(NativeImage.class)
 @StubClass
+@Erase(methods = "writeToChannel(Ljava/nio/channels/WritableByteChannel;)Z")
 @SuppressWarnings({"overwrite", "OverwriteAuthorRequired"})
 public class NativeImageMixin {
     @Mutable
@@ -47,23 +50,46 @@ public class NativeImageMixin {
     }
 
     @Overwrite
-    public static NativeImage read(NativeImage.Format format, InputStream inputStream) {
+    public static NativeImage read(@Nullable NativeImage.Format format, InputStream inputStream) {
+        if (format == null) {
+            format = NativeImage.Format.RGBA;
+        }
+
         return new NativeImage(format, -1, -1, false);
     }
 
     @Overwrite
-    public static NativeImage read(ByteBuffer byteBuffer) throws IOException {
-        return NativeImage.read(NativeImage.Format.RGBA, byteBuffer);
+    public static NativeImage read(ByteBuffer byteBuffer) {
+        return new NativeImage(-1, -1, false);
     }
 
     @Overwrite
-    public static NativeImage read(NativeImage.Format format, ByteBuffer byteBuffer) {
+    public static NativeImage read(byte[] bs) {
+        return new NativeImage(-1, -1, false);
+    }
+
+    @Overwrite
+    public static NativeImage read(@Nullable NativeImage.Format format, ByteBuffer byteBuffer) {
+        if (format == null) {
+            format = NativeImage.Format.RGBA;
+        }
+
         return new NativeImage(format, -1, -1, false);
     }
 
     @Overwrite
     public int getPixelRGBA(int i, int j) {
         return 0;
+    }
+
+    @Overwrite
+    public NativeImage mappedCopy(IntUnaryOperator intUnaryOperator) {
+        return (NativeImage) (Object) this;
+    }
+
+    @Overwrite
+    public int[] getPixelsRGBA() {
+        return new int[] {};
     }
 
     @Overwrite
@@ -95,10 +121,5 @@ public class NativeImageMixin {
     @Overwrite
     public byte[] asByteArray() {
         return new byte[] {};
-    }
-
-    @Overwrite
-    public static NativeImage fromBase64(String string) {
-        return new NativeImage(NativeImage.Format.RGBA, -1, -1, false);
     }
 }

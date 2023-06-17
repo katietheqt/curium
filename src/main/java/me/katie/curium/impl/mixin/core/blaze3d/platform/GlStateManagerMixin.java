@@ -100,11 +100,6 @@ public class GlStateManagerMixin {
     }
 
     @Overwrite
-    public static int _getTextureId(int i) {
-        return 1337;
-    }
-
-    @Overwrite
     public static int _getActiveTexture() {
         return 1337;
     }

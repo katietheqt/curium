@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(Main.class)
 public class MainMixin {
     @Redirect(
-            method = "run",
+            method = "main",
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/Util;startTimerHackThread()V"
