@@ -1,0 +1,24 @@
+package me.katie.curium.impl.mixin.core.blaze3d.audio;
+
+import com.mojang.blaze3d.audio.SoundBuffer;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.Shadow;
+
+import java.util.OptionalInt;
+
+@Mixin(value = SoundBuffer.class, remap = false)
+@SuppressWarnings("overwrite")
+public class SoundBufferMixin {
+    @Shadow private boolean hasAlBuffer;
+
+    @Overwrite
+    OptionalInt getAlBuffer() {
+        return OptionalInt.empty();
+    }
+
+    @Overwrite
+    public void discardAlBuffer() {
+        this.hasAlBuffer = false;
+    }
+}

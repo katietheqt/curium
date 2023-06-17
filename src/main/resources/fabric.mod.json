@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "curium",
+  "version": "${version}",
+  "name": "Curium",
+  "description": "Strips the renderer out of a Minecraft client",
+  "authors": [],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/curium/icon.png",
+  "environment": "client",
+  "entrypoints": {},
+  "mixins": [
+    "curium.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.13",
+    "minecraft": "1.19.3"
+  }
+}
