@@ -2,4 +2,3 @@ accessWidener   v1  named
 
 accessible method com/mojang/blaze3d/audio/Channel <init> (I)V
 accessible class com/mojang/blaze3d/systems/TimerQuery$TimerQueryLazyLoader
-accessible class com/mojang/realmsclient/util/RealmsTextureManager$TextureData

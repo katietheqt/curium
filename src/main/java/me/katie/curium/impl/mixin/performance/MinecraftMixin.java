@@ -2,6 +2,7 @@ package me.katie.curium.impl.mixin.performance;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.main.GameConfig;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.GameRenderer;
@@ -26,10 +27,10 @@ public class MinecraftMixin {
             method = "runTick",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/Minecraft;renderFpsMeter(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/util/profiling/ProfileResults;)V"
+                    target = "Lnet/minecraft/client/Minecraft;renderFpsMeter(Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/util/profiling/ProfileResults;)V"
             )
     )
-    private void curium_neverRenderFpsMeter(Minecraft instance, PoseStack poseStack, ProfileResults profileResults) {
+    private void curium_neverRenderFpsMeter(Minecraft instance, GuiGraphics guiGraphics, ProfileResults profileResults) {
 
     }
 

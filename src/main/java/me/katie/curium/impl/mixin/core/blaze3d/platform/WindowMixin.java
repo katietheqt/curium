@@ -18,15 +18,10 @@ import java.nio.IntBuffer;
 
 @Mixin(Window.class)
 @StubClass
-@SuppressWarnings({"overwrite", "OverwriteAuthorRequired"})
+@SuppressWarnings({"overwrite"})
 public class WindowMixin {
     @OverwriteCtor
     private void curium_overwriteCtor(WindowEventHandler windowEventHandler, ScreenManager screenManager, DisplayData displayData, @Nullable String string, String string2) {
 
-    }
-
-    @Overwrite
-    private @Nullable ByteBuffer readIconPixels(IoSupplier<InputStream> ioSupplier, IntBuffer intBuffer, IntBuffer intBuffer2, IntBuffer intBuffer3) {
-        return Util.stubbed();
     }
 }
