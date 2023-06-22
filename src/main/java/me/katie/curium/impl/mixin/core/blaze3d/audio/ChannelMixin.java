@@ -18,7 +18,7 @@ public class ChannelMixin {
 
     @Overwrite
     @SuppressWarnings("DataFlowIssue") // IntelliJ complains if the nullable is there
-    static @Nullable Channel create() {
+    public static @Nullable Channel create() {
         return new Channel(-1);
     }
 

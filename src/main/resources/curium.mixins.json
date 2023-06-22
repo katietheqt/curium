@@ -60,7 +60,6 @@
     "reduce_threads.ConnectionMixin",
     "reduce_threads.MainMixin",
     "reduce_threads.SharedConstantsMixin",
-    "reduce_threads.SoundEngineMixin",
     "reduce_threads.UtilMixin"
   ],
   "injectors": {
