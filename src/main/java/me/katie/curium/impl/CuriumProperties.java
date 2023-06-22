@@ -15,4 +15,7 @@ public class CuriumProperties {
      * returning to Mixin.
      */
     public static boolean ASM_CHECK = System.getProperty(PROPERTY_BASE + ".asm.check") != null;
+
+    public static String SERVER_HOST = System.getProperty(PROPERTY_BASE + ".server.host");
+    public static String SERVER_PORT = System.getProperty(PROPERTY_BASE + ".server.port");
 }

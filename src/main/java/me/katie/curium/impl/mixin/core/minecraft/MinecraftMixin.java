@@ -1,7 +1,9 @@
 package me.katie.curium.impl.mixin.core.minecraft;
 
+import com.mojang.realmsclient.client.RealmsClient;
 import me.katie.curium.Curium;
 import me.katie.curium.impl.CuriumConstants;
+import me.katie.curium.impl.CuriumProperties;
 import me.katie.curium.impl.duck.CuriumStateHolder;
 import me.katie.curium.events.client.ClientStartedEvent;
 import me.katie.curium.events.client.TickEvent;
@@ -9,7 +11,13 @@ import me.katie.curium.impl.api.CuriumImpl;
 import me.katie.curium.impl.util.Util;
 import net.minecraft.SystemReport;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.ConnectScreen;
+import net.minecraft.client.gui.screens.TitleScreen;
+import net.minecraft.client.gui.screens.multiplayer.JoinMultiplayerScreen;
 import net.minecraft.client.main.GameConfig;
+import net.minecraft.client.multiplayer.ServerData;
+import net.minecraft.client.multiplayer.resolver.ServerAddress;
+import net.minecraft.server.packs.resources.ReloadInstance;
 import net.minecraft.util.profiling.ProfilerFiller;
 import org.jetbrains.annotations.NotNull;
 import org.objectweb.asm.Opcodes;
@@ -27,6 +35,37 @@ public abstract class MinecraftMixin implements CuriumStateHolder {
     @Shadow public String fpsString;
 
     @Shadow private ProfilerFiller profiler;
+
+    @Inject(
+            method = "setInitialScreen",
+            at = @At("HEAD"),
+            cancellable = true
+    )
+    private void curium_joinViaSystemProperty(RealmsClient realmsClient, ReloadInstance reloadInstance, GameConfig.QuickPlayData quickPlayData, CallbackInfo ci) {
+        if (CuriumProperties.SERVER_HOST == null) {
+            return;
+        }
+
+        ci.cancel();
+
+        // Parse port from system property.
+        int port;
+
+        try {
+            port = Integer.parseInt(CuriumProperties.SERVER_PORT);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Curium server port was set to an invalid value", e);
+        }
+
+        // Join server by host and port.
+        reloadInstance.done().thenRunAsync(() -> {
+            JoinMultiplayerScreen screen = new JoinMultiplayerScreen(new TitleScreen());
+            ServerAddress address = new ServerAddress(CuriumProperties.SERVER_HOST, port);
+            ServerData data = new ServerData("Curium Debug", CuriumProperties.SERVER_HOST, false);
+
+            ConnectScreen.startConnecting(screen, (Minecraft) (Object) this, address, data, true);
+        }, (Minecraft) (Object) this);
+    }
 
     @Inject(
             method = "<init>",
@@ -138,6 +177,7 @@ public abstract class MinecraftMixin implements CuriumStateHolder {
 
 
     // State associated with this client.
+    @Unique
     private final CuriumImpl curium_state = new CuriumImpl();
 
     @Override

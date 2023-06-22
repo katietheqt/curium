@@ -1,4 +1,6 @@
 # Curium
+![Version](https://img.shields.io/badge/MC_Version-1.20.1-blue)
+
 A project to strip the rendering code out of a Minecraft client.
 
 ### Why?
