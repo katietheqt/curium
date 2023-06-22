@@ -15,8 +15,7 @@ public class StubInternalHelper {
         throw new UnsupportedOperationException("Cannot instantiate StubInternalHelper");
     }
 
-    public static void stubbed0() {
-        // Get the calling method.
+    public static RuntimeException getStubbedException() {
         String calledMethod = STACK_WALKER.walk(s ->
                 s.skip(2)
                         .findFirst()
@@ -29,11 +28,10 @@ public class StubInternalHelper {
                         .orElseThrow()
         );
 
-        throw new IllegalStateException("call against a stubbed out method: " + calledMethod);
+        return new IllegalStateException("call against a stubbed out method: " + calledMethod);
     }
 
     public static void stubbed() {
-        stubbed0();
-        throw new AssertionError();
+        throw getStubbedException();
     }
 }

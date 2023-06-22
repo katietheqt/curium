@@ -13,7 +13,7 @@ public class SoundBufferMixin {
     @Shadow private boolean hasAlBuffer;
 
     @Overwrite
-    OptionalInt getAlBuffer() {
+    public OptionalInt getAlBuffer() {
         return OptionalInt.empty();
     }
 

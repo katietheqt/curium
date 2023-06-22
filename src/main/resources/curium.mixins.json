@@ -13,6 +13,7 @@
     "core.blaze3d.audio.ListenerMixin",
     "core.blaze3d.audio.OggAudioStreamMixin",
     "core.blaze3d.audio.OpenAlUtilMixin",
+    "core.blaze3d.audio.SoundBufferLibraryMixin",
     "core.blaze3d.audio.SoundBufferMixin",
     "core.blaze3d.font.TrueTypeGlyphProviderMixin",
     "core.blaze3d.pipeline.MainTargetMixin",
@@ -49,8 +50,10 @@
     "core.minecraft.MinecraftMixin",
     "core.minecraft.MouseHandlerAccessor",
     "core.minecraft.MouseHandlerMixin",
+    "core.minecraft.OptionsMixin",
     "core.minecraft.font.TrueTypeGlyphProviderBuilderMixin",
     "core.minecraft.renderer.VirtualScreenMixin",
+    "core.minecraft.renderer.culling.FrustumMixin",
     "core.minecraft.renderer.texture.SpriteContentsMixin",
     "core.minecraft.renderer.texture.SpriteLoaderMixin",
     "core.minecraft.renderer.texture.TextureAtlasMixin",
@@ -60,7 +63,6 @@
     "reduce_threads.ConnectionMixin",
     "reduce_threads.MainMixin",
     "reduce_threads.SharedConstantsMixin",
-    "reduce_threads.SoundEngineMixin",
     "reduce_threads.UtilMixin"
   ],
   "injectors": {

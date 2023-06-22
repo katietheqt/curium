@@ -13,8 +13,9 @@
   "mixins": [
     "curium.mixins.json"
   ],
+  "accessWidener": "curium.accesswidener",
   "depends": {
-    "fabricloader": ">=0.14.13",
-    "minecraft": "1.19.4"
+    "fabricloader": ">=0.14.21",
+    "minecraft": "~1.20"
   }
 }

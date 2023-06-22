@@ -1,4 +1,5 @@
-accessWidener   v1  named
+accessWidener v1 named
 
 accessible method com/mojang/blaze3d/audio/Channel <init> (I)V
 accessible class com/mojang/blaze3d/systems/TimerQuery$TimerQueryLazyLoader
+accessible class net/minecraft/client/Options$FieldAccess

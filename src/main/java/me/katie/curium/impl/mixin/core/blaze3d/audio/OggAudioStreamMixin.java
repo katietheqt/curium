@@ -5,10 +5,7 @@ import me.katie.curium.impl.asm.annotations.StubClass;
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(OggAudioStream.class)
-@StubClass(
-        isThrowing = true,
-        skip = "<init>"
-)
+@StubClass(isThrowing = true)
 public class OggAudioStreamMixin {
 
 }

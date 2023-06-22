@@ -2,6 +2,7 @@ package me.katie.curium.impl.util;
 
 import me.katie.curium.impl.asm.helper.StubInternalHelper;
 
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
 public class Util {
@@ -20,7 +21,15 @@ public class Util {
      */
     @SuppressWarnings("UnusedReturnValue")
     public static <T> T stubbed() {
-        StubInternalHelper.stubbed0();
-        throw new AssertionError();
+        throw StubInternalHelper.getStubbedException();
+    }
+
+    /**
+     * Returns a future that fails with a descriptive error about a failed assertion due to a stubbed out method,
+     * including the stubbed method in the method name. This uses a stack walker - do not wrap.
+     */
+    public static <T> CompletableFuture<T> stubbedFuture() {
+        RuntimeException ex = StubInternalHelper.getStubbedException();
+        return CompletableFuture.failedFuture(ex);
     }
 }
