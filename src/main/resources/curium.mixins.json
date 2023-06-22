@@ -51,6 +51,7 @@
     "core.minecraft.MouseHandlerMixin",
     "core.minecraft.font.TrueTypeGlyphProviderBuilderMixin",
     "core.minecraft.renderer.VirtualScreenMixin",
+    "core.minecraft.renderer.culling.FrustumMixin",
     "core.minecraft.renderer.texture.SpriteContentsMixin",
     "core.minecraft.renderer.texture.SpriteLoaderMixin",
     "core.minecraft.renderer.texture.TextureAtlasMixin",
