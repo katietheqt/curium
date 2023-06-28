@@ -1,4 +1,4 @@
-package me.katie.curium.impl.asm.annotations;
+package me.katie.curium.impl.asm.mixin.annotations;
 
 
 import java.lang.annotation.ElementType;

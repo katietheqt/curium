@@ -3,7 +3,7 @@ package me.katie.curium.impl.mixin.core.blaze3d.audio;
 import com.mojang.blaze3d.audio.Channel;
 import com.mojang.blaze3d.audio.Library;
 import me.katie.curium.impl.CuriumConstants;
-import me.katie.curium.impl.asm.annotations.StubClass;
+import me.katie.curium.impl.asm.mixin.annotations.StubClass;
 import me.katie.curium.impl.util.Util;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;

@@ -1,10 +1,10 @@
-package me.katie.curium.impl.asm.handlers;
+package me.katie.curium.impl.asm.mixin.transformers;
 
-import me.katie.curium.impl.asm.ASMUtil;
-import me.katie.curium.impl.asm.CuriumMixinPlugin;
-import me.katie.curium.impl.asm.Transformer;
-import me.katie.curium.impl.asm.annotations.StubClass;
-import me.katie.curium.impl.asm.helper.StubInternalHelper;
+import me.katie.curium.impl.asm.util.ASMUtil;
+import me.katie.curium.impl.asm.CuriumASM;
+import me.katie.curium.impl.asm.mixin.ClassTransformer;
+import me.katie.curium.impl.asm.mixin.annotations.StubClass;
+import me.katie.curium.impl.asm.mixin.helper.StubInternalHelper;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 import org.objectweb.asm.tree.*;
@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Handles the {@link StubClass} annotation.
  */
-public class StubClassHandler implements Transformer {
+public class StubClassHandler implements ClassTransformer {
     @Override
     public void preMixinTransform(ClassNode target, ClassNode mixin) {
         // Check annotation.
@@ -72,7 +72,7 @@ public class StubClassHandler implements Transformer {
         }
 
         target.methods.addAll(newMethods);
-        CuriumMixinPlugin.LOGGER.debug("Stripped {} void method bodies from {}", newMethods.size(), target.name);
+        CuriumASM.LOGGER.debug("Stripped {} void method bodies from {}", newMethods.size(), target.name);
     }
 
     @Override

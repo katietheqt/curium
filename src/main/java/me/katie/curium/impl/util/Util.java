@@ -1,6 +1,6 @@
 package me.katie.curium.impl.util;
 
-import me.katie.curium.impl.asm.helper.StubInternalHelper;
+import me.katie.curium.impl.asm.mixin.helper.StubInternalHelper;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;

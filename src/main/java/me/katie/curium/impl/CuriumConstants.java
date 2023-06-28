@@ -13,6 +13,7 @@ import java.util.List;
  * Constants for Curium.
  */
 public class CuriumConstants {
+
     private CuriumConstants() {
         throw new UnsupportedOperationException("Cannot instantiate CuriumConstants");
     }

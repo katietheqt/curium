@@ -3,19 +3,36 @@ package me.katie.curium.impl.mixin.core.blaze3d.systems;
 import com.mojang.blaze3d.pipeline.RenderCall;
 import com.mojang.blaze3d.systems.RenderSystem;
 import me.katie.curium.impl.CuriumConstants;
+import me.katie.curium.impl.asm.mixin.annotations.Erase;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 @Mixin(value = RenderSystem.class, remap = false)
+@Erase(fields = {
+        "isReplayingQueue", "gameThread", "renderThread", "MAX_SUPPORTED_TEXTURE_SIZE", "isInInit"
+})
 @SuppressWarnings({"overwrite", "OverwriteAuthorRequired"})
 public class RenderSystemMixin {
     @Shadow
     @Final
     private static ConcurrentLinkedQueue<RenderCall> recordingQueue;
+
+    @Redirect(
+            method = "<clinit>",
+            at = @At(
+                    value = "FIELD",
+                    target = "Lcom/mojang/blaze3d/systems/RenderSystem;MAX_SUPPORTED_TEXTURE_SIZE:I"
+            )
+    )
+    private static void curium_removeMaxSupportedTextureSizeField(int value) {
+
+    }
 
     @Overwrite
     public static void initRenderThread() {

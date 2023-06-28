@@ -1,7 +1,7 @@
 package me.katie.curium.impl.mixin.core.blaze3d.platform;
 
 import com.mojang.blaze3d.platform.MemoryTracker;
-import me.katie.curium.impl.asm.annotations.Erase;
+import me.katie.curium.impl.asm.mixin.annotations.Erase;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 

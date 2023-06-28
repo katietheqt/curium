@@ -1,8 +1,8 @@
 package me.katie.curium.impl.mixin.core.blaze3d.font;
 
 import com.mojang.blaze3d.font.TrueTypeGlyphProvider;
-import me.katie.curium.impl.asm.annotations.Erase;
-import me.katie.curium.impl.asm.annotations.StubClass;
+import me.katie.curium.impl.asm.mixin.annotations.Erase;
+import me.katie.curium.impl.asm.mixin.annotations.StubClass;
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(TrueTypeGlyphProvider.class)

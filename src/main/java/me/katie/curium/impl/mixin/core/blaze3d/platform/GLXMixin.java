@@ -3,7 +3,7 @@ package me.katie.curium.impl.mixin.core.blaze3d.platform;
 import com.mojang.blaze3d.platform.GLX;
 import com.mojang.blaze3d.platform.Window;
 import me.katie.curium.impl.CuriumConstants;
-import me.katie.curium.impl.asm.annotations.StubClass;
+import me.katie.curium.impl.asm.mixin.annotations.StubClass;
 import me.katie.curium.impl.api.CuriumImpl;
 import me.katie.curium.impl.util.Util;
 import org.spongepowered.asm.mixin.Mixin;

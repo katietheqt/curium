@@ -1,7 +1,7 @@
 package me.katie.curium.impl.mixin.core.blaze3d.audio;
 
 import com.mojang.blaze3d.audio.SoundBuffer;
-import me.katie.curium.impl.asm.annotations.StubClass;
+import me.katie.curium.impl.asm.mixin.annotations.StubClass;
 import me.katie.curium.impl.util.Util;
 import net.minecraft.client.resources.sounds.Sound;
 import net.minecraft.client.sounds.AudioStream;

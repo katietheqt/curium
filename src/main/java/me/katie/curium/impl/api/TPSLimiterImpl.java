@@ -42,7 +42,7 @@ public class TPSLimiterImpl implements TPSLimiter {
             this.laggyTicks++;
 
             if ((this.laggyTicks % 20) == 0) {
-                CuriumConstants.LOGGER.warn("{} consecutive ticks exceeded {}ms time budget! ({}ms)", this.laggyTicks, this.targetTickTime, tickTime);
+                CuriumConstants.LOGGER.warn("{} consecutive ticks exceeded {}ms time budget! (this tick: {}ms)", this.laggyTicks, this.targetTickTime, tickTime);
             }
         }
     }

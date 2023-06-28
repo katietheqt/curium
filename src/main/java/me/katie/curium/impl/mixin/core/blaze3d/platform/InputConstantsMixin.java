@@ -2,9 +2,9 @@ package me.katie.curium.impl.mixin.core.blaze3d.platform;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import me.katie.curium.impl.api.CuriumImpl;
-import me.katie.curium.impl.asm.annotations.CustomTransformer;
-import me.katie.curium.impl.asm.annotations.Erase;
-import me.katie.curium.impl.asm.transformers.StripLwjglLdcTransformer;
+import me.katie.curium.impl.asm.mixin.annotations.CustomTransformer;
+import me.katie.curium.impl.asm.mixin.annotations.Erase;
+import me.katie.curium.impl.asm.mixin.transformers.StripLwjglLdcTransformer;
 import me.katie.curium.impl.util.Util;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;

@@ -1,6 +1,6 @@
-package me.katie.curium.impl.asm.helper;
+package me.katie.curium.impl.asm.mixin.helper;
 
-import me.katie.curium.impl.asm.annotations.OverwriteCtor;
+import me.katie.curium.impl.asm.mixin.annotations.OverwriteCtor;
 
 /**
  * Helper class for {@link OverwriteCtor}.

@@ -3,7 +3,7 @@ package me.katie.curium.impl.mixin.core.blaze3d.vertex;
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import it.unimi.dsi.fastutil.ints.IntConsumer;
-import me.katie.curium.impl.asm.annotations.OverwriteCtor;
+import me.katie.curium.impl.asm.mixin.annotations.OverwriteCtor;
 import org.joml.Vector3f;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;

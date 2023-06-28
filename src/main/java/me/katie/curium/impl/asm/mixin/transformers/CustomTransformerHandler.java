@@ -1,8 +1,8 @@
-package me.katie.curium.impl.asm.handlers;
+package me.katie.curium.impl.asm.mixin.transformers;
 
-import me.katie.curium.impl.asm.CuriumMixinPlugin;
-import me.katie.curium.impl.asm.Transformer;
-import me.katie.curium.impl.asm.annotations.CustomTransformer;
+import me.katie.curium.impl.asm.mixin.CuriumMixinPlugin;
+import me.katie.curium.impl.asm.mixin.ClassTransformer;
+import me.katie.curium.impl.asm.mixin.annotations.CustomTransformer;
 import org.objectweb.asm.Type;
 import org.objectweb.asm.tree.AnnotationNode;
 import org.objectweb.asm.tree.ClassNode;
@@ -16,8 +16,8 @@ import java.util.List;
 /**
  * Handles the {@link CustomTransformer} annotation.
  */
-public class CustomTransformerHandler implements Transformer {
-    private static List<Transformer> getTransformers(ClassNode mixin) {
+public class CustomTransformerHandler implements ClassTransformer {
+    private static List<ClassTransformer> getTransformers(ClassNode mixin) {
         // Check for annotation.
         AnnotationNode annotation = Annotations.getInvisible(mixin, CustomTransformer.class);
 
@@ -26,7 +26,7 @@ public class CustomTransformerHandler implements Transformer {
         }
 
         // Fetch transformers.
-        List<Transformer> transformers = new ArrayList<>();
+        List<ClassTransformer> transformers = new ArrayList<>();
         List<Type> transformerTypes = Annotations.getValue(annotation);
 
         for (Type transformerType: transformerTypes) {
@@ -34,11 +34,11 @@ public class CustomTransformerHandler implements Transformer {
             String className = transformerType.getInternalName().replace('/', '.');
 
             // Load transformer class.
-            Class<? extends Transformer> transformerClass;
+            Class<? extends ClassTransformer> transformerClass;
 
             try {
                 Class<?> maybeTransformerClass = Class.forName(className, true, CuriumMixinPlugin.class.getClassLoader());
-                transformerClass = maybeTransformerClass.asSubclass(Transformer.class);
+                transformerClass = maybeTransformerClass.asSubclass(ClassTransformer.class);
             } catch (ClassNotFoundException e) {
                 throw new IllegalStateException("@ClassTransformers transformer " + className + " could not be loaded", e);
             } catch (ClassCastException e) {
@@ -46,7 +46,7 @@ public class CustomTransformerHandler implements Transformer {
             }
 
             // Locate constructor.
-            Constructor<? extends Transformer> ctor;
+            Constructor<? extends ClassTransformer> ctor;
 
             try {
                 ctor = transformerClass.getConstructor();
@@ -57,7 +57,7 @@ public class CustomTransformerHandler implements Transformer {
 
             // Construct instance.
             try {
-                Transformer transformer = ctor.newInstance();
+                ClassTransformer transformer = ctor.newInstance();
                 transformers.add(transformer);
             } catch (InvocationTargetException e) {
                 throw new RuntimeException("@ClassTransformers transformer constructor threw", e);
@@ -73,28 +73,28 @@ public class CustomTransformerHandler implements Transformer {
 
     @Override
     public void preMixinTransform(ClassNode target, ClassNode mixin) {
-        List<Transformer> transformers = getTransformers(mixin);
+        List<ClassTransformer> transformers = getTransformers(mixin);
 
         if (transformers == null) {
             return;
         }
 
         // Apply all located transformers.
-        for (Transformer transformer: transformers) {
+        for (ClassTransformer transformer: transformers) {
             transformer.preMixinTransform(target, mixin);
         }
     }
 
     @Override
     public void postMixinTransform(ClassNode target, ClassNode mixin) {
-        List<Transformer> transformers = getTransformers(mixin);
+        List<ClassTransformer> transformers = getTransformers(mixin);
 
         if (transformers == null) {
             return;
         }
 
         // Apply all located transformers.
-        for (Transformer transformer: transformers) {
+        for (ClassTransformer transformer: transformers) {
             transformer.postMixinTransform(target, mixin);
         }
     }

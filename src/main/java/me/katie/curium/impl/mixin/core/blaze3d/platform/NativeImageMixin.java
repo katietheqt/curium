@@ -1,9 +1,9 @@
 package me.katie.curium.impl.mixin.core.blaze3d.platform;
 
 import com.mojang.blaze3d.platform.NativeImage;
-import me.katie.curium.impl.asm.annotations.Erase;
-import me.katie.curium.impl.asm.annotations.OverwriteCtor;
-import me.katie.curium.impl.asm.annotations.StubClass;
+import me.katie.curium.impl.asm.mixin.annotations.Erase;
+import me.katie.curium.impl.asm.mixin.annotations.OverwriteCtor;
+import me.katie.curium.impl.asm.mixin.annotations.StubClass;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.*;
 

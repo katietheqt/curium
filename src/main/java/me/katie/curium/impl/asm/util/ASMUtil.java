@@ -1,9 +1,13 @@
-package me.katie.curium.impl.asm;
+package me.katie.curium.impl.asm.util;
 
+import me.katie.curium.impl.asm.mixin.CuriumMixinPlugin;
+import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 import org.objectweb.asm.tree.*;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.invoke.MethodType;
 
 /**
@@ -56,5 +60,32 @@ public class ASMUtil {
         }
 
         return Type.getMethodType(returnType, asmParameterTypes);
+    }
+
+    /**
+     * Gets the bytecode of a class from Knot (with resource).
+     */
+    public static byte[] getClassBytes(String name) {
+        try (InputStream is = CuriumMixinPlugin.class.getClassLoader().getResourceAsStream(name.replace('.', '/') + ".class")) {
+            if (is == null) {
+                throw new IllegalStateException("Failed to find class " + name + "on Knot");
+            }
+
+            return is.readAllBytes();
+        } catch (IOException e) {
+            throw new IllegalStateException("IO exception while reading " + name + " from Knot", e);
+        }
+    }
+
+    /**
+     * Gets the bytecode of a class from Knot (with resource) and converts it to an ASM class node.
+     */
+    public static ClassNode getClassNode(String name) {
+        byte[] buf = getClassBytes(name);
+        ClassReader reader = new ClassReader(buf);
+        ClassNode clazz = new ClassNode();
+        reader.accept(clazz, ClassReader.EXPAND_FRAMES);
+
+        return clazz;
     }
 }

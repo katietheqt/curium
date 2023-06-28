@@ -2,8 +2,8 @@ package me.katie.curium.impl.mixin.core.blaze3d.shaders;
 
 import com.mojang.blaze3d.shaders.Shader;
 import com.mojang.blaze3d.shaders.Uniform;
-import me.katie.curium.impl.asm.annotations.OverwriteCtor;
-import me.katie.curium.impl.asm.annotations.StubClass;
+import me.katie.curium.impl.asm.mixin.annotations.OverwriteCtor;
+import me.katie.curium.impl.asm.mixin.annotations.StubClass;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;

@@ -1,13 +1,11 @@
-package me.katie.curium.impl.asm;
+package me.katie.curium.impl.asm.util;
 
-import org.objectweb.asm.ClassReader;
+import me.katie.curium.impl.asm.CuriumASM;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.commons.ClassRemapper;
 import org.objectweb.asm.commons.Remapper;
 import org.objectweb.asm.tree.ClassNode;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.reflect.Method;
@@ -54,7 +52,7 @@ public class KnotLoaderHacks {
         try {
             return (Class<?>) KNOT_DEFINE_CLASS_FWD.invoke(KNOT, clazz.name.replace('/', '.'), b, 0, b.length, null);
         } catch (Throwable e) {
-            CuriumMixinPlugin.LOGGER.error("Failed to define class on Knot", e);
+            CuriumASM.LOGGER.error("Failed to define class on Knot", e);
             return null;
         }
     }
@@ -68,48 +66,35 @@ public class KnotLoaderHacks {
             defineReplacerClass(targetPackage + "/" + name, replacerPackage + "/" + name);
         }
 
-        CuriumMixinPlugin.LOGGER.debug("Defined {} classes (from package {} - replacing {})", names.length, replacerPackage, targetPackage);
+        CuriumASM.LOGGER.debug("Defined {} classes (from package {} - replacing {})", names.length, replacerPackage, targetPackage);
     }
 
     /**
      * Defines a replacer class by loading it from the current classloader as a resource.
      */
     public static Class<?> defineReplacerClass(String targetName, String replacerName) {
-        String msg = "replacer class for " + targetName + " (" + replacerName + ")";
+        // Read class and remap it.
+        ClassNode clazz = new ClassNode();
 
-        try (InputStream is = CuriumMixinPlugin.class.getClassLoader().getResourceAsStream(replacerName + ".class")) {
-            if (is == null) {
-                CuriumMixinPlugin.LOGGER.error("Missing " + msg);
-                return null;
+        ClassRemapper remapper = new ClassRemapper(clazz, new Remapper() {
+            @Override
+            public String map(String internalName) {
+                return this.mapType(internalName);
             }
 
-            // Read class and remap it.
-            ClassNode clazz = new ClassNode();
-            ClassRemapper remapper = new ClassRemapper(clazz, new Remapper() {
-                @Override
-                public String map(String internalName) {
-                    return this.mapType(internalName);
+            @Override
+            public String mapType(String internalName) {
+                if (internalName.equals(replacerName)) {
+                    return targetName;
                 }
 
-                @Override
-                public String mapType(String internalName) {
-                    if (internalName.equals(replacerName)) {
-                        return targetName;
-                    }
+                return internalName;
+            }
+        });
 
-                    return internalName;
-                }
-            });
+        ASMUtil.getClassNode(replacerName).accept(remapper);
 
-            byte[] buf = is.readAllBytes();
-            ClassReader reader = new ClassReader(buf);
-            reader.accept(remapper, ClassReader.EXPAND_FRAMES);
-
-            // Write back and convert to buffer.
-            return KnotLoaderHacks.defineClass(clazz);
-        } catch (IOException e) {
-            CuriumMixinPlugin.LOGGER.error("Failed to read " + msg, e);
-            return null;
-        }
+        // Write back and convert to buffer.
+        return KnotLoaderHacks.defineClass(clazz);
     }
 }

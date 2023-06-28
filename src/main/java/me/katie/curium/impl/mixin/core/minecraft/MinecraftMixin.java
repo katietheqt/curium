@@ -1,13 +1,12 @@
 package me.katie.curium.impl.mixin.core.minecraft;
 
 import com.mojang.realmsclient.client.RealmsClient;
-import me.katie.curium.Curium;
-import me.katie.curium.impl.CuriumConstants;
-import me.katie.curium.impl.CuriumProperties;
-import me.katie.curium.impl.duck.CuriumStateHolder;
 import me.katie.curium.events.client.ClientStartedEvent;
 import me.katie.curium.events.client.TickEvent;
+import me.katie.curium.impl.CuriumConstants;
+import me.katie.curium.impl.CuriumProperties;
 import me.katie.curium.impl.api.CuriumImpl;
+import me.katie.curium.impl.duck.CuriumStateHolder;
 import me.katie.curium.impl.util.Util;
 import net.minecraft.SystemReport;
 import net.minecraft.client.Minecraft;
@@ -25,7 +24,10 @@ import org.slf4j.Logger;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.Slice;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.function.Supplier;
@@ -129,7 +131,7 @@ public abstract class MinecraftMixin implements CuriumStateHolder {
             at = @At("HEAD")
     )
     private void curium_onGameRunning(CallbackInfo ci) {
-        Curium.get().getEventBus().post(ClientStartedEvent.get());
+        CuriumImpl.get().getEventBus().post(ClientStartedEvent.get());
     }
 
     @Redirect(
@@ -199,7 +201,7 @@ public abstract class MinecraftMixin implements CuriumStateHolder {
         this.curium_state.tpsLimiter.preTick();
 
         this.profiler.push("curium_pre");
-        Curium.get().getEventBus().post(TickEvent.Pre.get());
+        CuriumImpl.get().getEventBus().post(TickEvent.Pre.get());
         this.profiler.pop();
     }
 
@@ -213,7 +215,7 @@ public abstract class MinecraftMixin implements CuriumStateHolder {
     )
     private void curium_postClientTick(CallbackInfo ci) {
         this.profiler.push("curium_post");
-        Curium.get().getEventBus().post(TickEvent.Post.get());
+        CuriumImpl.get().getEventBus().post(TickEvent.Post.get());
         this.profiler.pop();
 
         this.curium_state.tpsLimiter.postTick();

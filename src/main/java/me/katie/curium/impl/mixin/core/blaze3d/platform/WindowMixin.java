@@ -4,17 +4,10 @@ import com.mojang.blaze3d.platform.DisplayData;
 import com.mojang.blaze3d.platform.ScreenManager;
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.platform.WindowEventHandler;
-import me.katie.curium.impl.asm.annotations.OverwriteCtor;
-import me.katie.curium.impl.asm.annotations.StubClass;
-import me.katie.curium.impl.util.Util;
-import net.minecraft.server.packs.resources.IoSupplier;
+import me.katie.curium.impl.asm.mixin.annotations.OverwriteCtor;
+import me.katie.curium.impl.asm.mixin.annotations.StubClass;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
-
-import java.io.InputStream;
-import java.nio.ByteBuffer;
-import java.nio.IntBuffer;
 
 @Mixin(Window.class)
 @StubClass

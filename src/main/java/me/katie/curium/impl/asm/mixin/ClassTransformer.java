@@ -1,11 +1,11 @@
-package me.katie.curium.impl.asm;
+package me.katie.curium.impl.asm.mixin;
 
 import org.objectweb.asm.tree.ClassNode;
 
 /**
  * Interface implemented by class transformers as part of the ASM pipeline.
  */
-public interface Transformer {
+public interface ClassTransformer {
     /**
      * Transformation executed before mixins are applied to the target class.
      *

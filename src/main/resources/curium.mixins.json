@@ -3,8 +3,9 @@
   "minVersion": "0.8",
   "package": "me.katie.curium.impl.mixin",
   "compatibilityLevel": "JAVA_17",
-  "plugin": "me.katie.curium.impl.asm.CuriumMixinPlugin",
+  "plugin": "me.katie.curium.impl.asm.mixin.CuriumMixinPlugin",
   "mixins": [
+    "performance.ReloadableResourceManagerMixin"
   ],
   "client": [
     "core.blaze3d.Blaze3DMixin",
@@ -60,9 +61,12 @@
     "core.minecraft.screen.ReceivingLevelScreenMixin",
     "performance.GameRendererMixin",
     "performance.MinecraftMixin",
+    "performance.ModelManagerMixin",
+    "performance.ParticleEngineMixin",
     "reduce_threads.ConnectionMixin",
     "reduce_threads.MainMixin",
     "reduce_threads.SharedConstantsMixin",
+    "reduce_threads.SoundEngineExecutorMixin",
     "reduce_threads.UtilMixin"
   ],
   "injectors": {

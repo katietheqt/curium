@@ -2,8 +2,8 @@ package me.katie.curium.impl.mixin.core.minecraft.renderer;
 
 import com.mojang.blaze3d.platform.DisplayData;
 import com.mojang.blaze3d.platform.Window;
-import me.katie.curium.impl.asm.annotations.OverwriteCtor;
-import me.katie.curium.impl.asm.annotations.StubClass;
+import me.katie.curium.impl.asm.mixin.annotations.OverwriteCtor;
+import me.katie.curium.impl.asm.mixin.annotations.StubClass;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.VirtualScreen;
 import org.jetbrains.annotations.Nullable;

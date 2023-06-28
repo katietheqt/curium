@@ -1,6 +1,6 @@
-package me.katie.curium.impl.asm.annotations;
+package me.katie.curium.impl.asm.mixin.annotations;
 
-import me.katie.curium.impl.asm.Transformer;
+import me.katie.curium.impl.asm.mixin.ClassTransformer;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -16,5 +16,5 @@ public @interface CustomTransformer {
     /**
      * List of transformers to apply.
      */
-    Class<? extends Transformer>[] value();
+    Class<? extends ClassTransformer>[] value();
 }

@@ -1,7 +1,7 @@
-package me.katie.curium.impl.asm.helper;
+package me.katie.curium.impl.asm.mixin.helper;
 
-import me.katie.curium.impl.asm.ASMUtil;
-import me.katie.curium.impl.asm.annotations.StubClass;
+import me.katie.curium.impl.asm.util.ASMUtil;
+import me.katie.curium.impl.asm.mixin.annotations.StubClass;
 
 import java.lang.invoke.MethodType;
 

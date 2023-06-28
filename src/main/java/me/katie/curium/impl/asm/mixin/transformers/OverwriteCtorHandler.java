@@ -1,9 +1,9 @@
-package me.katie.curium.impl.asm.handlers;
+package me.katie.curium.impl.asm.mixin.transformers;
 
-import me.katie.curium.impl.asm.CuriumMixinPlugin;
-import me.katie.curium.impl.asm.helper.CtorOverwriteHelper;
-import me.katie.curium.impl.asm.Transformer;
-import me.katie.curium.impl.asm.annotations.OverwriteCtor;
+import me.katie.curium.impl.asm.CuriumASM;
+import me.katie.curium.impl.asm.mixin.ClassTransformer;
+import me.katie.curium.impl.asm.mixin.annotations.OverwriteCtor;
+import me.katie.curium.impl.asm.mixin.helper.CtorOverwriteHelper;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 import org.objectweb.asm.tree.*;
@@ -15,7 +15,7 @@ import java.util.Iterator;
 /**
  * Handles the {@link OverwriteCtor} annotation.
  */
-public class OverwriteCtorHandler implements Transformer {
+public class OverwriteCtorHandler implements ClassTransformer {
     private static final String HELPER_INTERNAL = Type.getInternalName(CtorOverwriteHelper.class);
     private static final String HELPER_SUPER_METHOD = "super_";
 
@@ -113,7 +113,7 @@ public class OverwriteCtorHandler implements Transformer {
                     ));
                 }
             } else if (foundCtorCount == 1) {
-                CuriumMixinPlugin.LOGGER.debug("Overwrote constructor in {} with {};{}{}", target.name, mixin.name, method.name, method.desc);
+                CuriumASM.LOGGER.debug("Overwrote constructor in {} with {};{}{}", target.name, mixin.name, method.name, method.desc);
             } else {
                 throw new IllegalStateException(String.format(
                         "found multiple super constructor calls in ctor overwrite for %s (from %s;%s%s)",

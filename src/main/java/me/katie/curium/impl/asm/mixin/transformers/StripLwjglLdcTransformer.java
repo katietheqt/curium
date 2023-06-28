@@ -1,6 +1,6 @@
-package me.katie.curium.impl.asm.transformers;
+package me.katie.curium.impl.asm.mixin.transformers;
 
-import me.katie.curium.impl.asm.Transformer;
+import me.katie.curium.impl.asm.mixin.ClassTransformer;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 import org.objectweb.asm.tree.*;
@@ -10,7 +10,7 @@ import java.util.Iterator;
 /**
  * Transformer that replaces {@code LDC} instructions referencing LWJGL classes with {@code ACONST_NULL} instructions.
  */
-public class StripLwjglLdcTransformer implements Transformer {
+public class StripLwjglLdcTransformer implements ClassTransformer {
     @Override
     public void preMixinTransform(ClassNode target, ClassNode mixin) {
 

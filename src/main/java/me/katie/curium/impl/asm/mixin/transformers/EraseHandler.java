@@ -1,7 +1,7 @@
-package me.katie.curium.impl.asm.handlers;
+package me.katie.curium.impl.asm.mixin.transformers;
 
-import me.katie.curium.impl.asm.Transformer;
-import me.katie.curium.impl.asm.annotations.Erase;
+import me.katie.curium.impl.asm.mixin.ClassTransformer;
+import me.katie.curium.impl.asm.mixin.annotations.Erase;
 import org.objectweb.asm.tree.AnnotationNode;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.util.Annotations;
@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Handles the {@link Erase} annotation.
  */
-public class EraseHandler implements Transformer {
+public class EraseHandler implements ClassTransformer {
     @Override
     public void preMixinTransform(ClassNode target, ClassNode mixin) {
         // Fetch annotation.
